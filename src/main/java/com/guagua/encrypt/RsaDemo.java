@@ -165,21 +165,38 @@ public class RsaDemo {
         return factory.generatePublic(x509EncodedKeySpec);
     }
 
-    public static String getSignature(String algorithm, PrivateKey privateKey, String input) throws Exception {
+    /**
+     * 对原文进行签名
+     *
+     * @param algorithm 签名算法
+     * @param privateKey 私钥
+     * @param original 原文
+     * @return
+     * @throws Exception
+     */
+    public static String getSignature(String algorithm, PrivateKey privateKey, String original) throws Exception {
         Signature signature = Signature.getInstance(algorithm);
         signature.initSign(privateKey);
-        signature.update(input.getBytes());
+        signature.update(original.getBytes());
         byte[] sign = signature.sign();
 
         return Base64.encode(sign);
     }
+
     /**
      * 校验签名
+     *
+     * @param algorithm 签名算法
+     * @param publicKey 公钥验证签名
+     * @param original 原文
+     * @param signatureData 原文签名后的数据
+     * @return
+     * @throws Exception
      */
-    public static boolean verifySignature(String algorithm, PublicKey publicKey, String input, String signatureData) throws Exception {
+    public static boolean verifySignature(String algorithm, PublicKey publicKey, String original, String signatureData) throws Exception {
         Signature signature = Signature.getInstance(algorithm);
         signature.initVerify(publicKey);
-        signature.update(input.getBytes());
+        signature.update(original.getBytes());
         return signature.verify(Base64.decode(signatureData));
     }
 
