@@ -14,5 +14,11 @@ public class Test {
             System.out.println(s1);
         }
         System.out.println(s.length);
+
+        User user = new User();
+        user.setId(1);
+        user.setName("瓜瓜");
+
+        System.out.println(user);
     }
 }
