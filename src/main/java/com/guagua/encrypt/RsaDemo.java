@@ -208,7 +208,6 @@ public class RsaDemo {
      */
     private static String getKeyByPath(String path) {
         FileReader fileReader = null;
-        ByteArrayOutputStream baos = null;
         try {
             File file = new File(path);
             fileReader = new FileReader(file);
@@ -229,14 +228,6 @@ public class RsaDemo {
                     e.printStackTrace();
                 }
             }
-            if (baos != null) {
-                try {
-                    baos.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
         }
     }
 
