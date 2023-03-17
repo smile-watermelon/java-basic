@@ -58,20 +58,5 @@ public class User implements Serializable {
                 '}';
     }
 
-    public static void main(String[] args) throws IOException {
-        Path path = Paths.get("user.bin");
-        ObjectOutputStream outputStream = new ObjectOutputStream(Files.newOutputStream(path));
 
-        User user = new User(1, "guagua");
-        user.writeObject(outputStream);
-        outputStream.close();
-
-        ObjectInputStream inputStream = new ObjectInputStream(Files.newInputStream(path));
-        User user1 = new User();
-        user1.readObject(inputStream);
-        inputStream.close();
-
-        System.out.println(user1);
-
-    }
 }
